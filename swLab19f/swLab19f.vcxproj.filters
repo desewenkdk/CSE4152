@@ -36,6 +36,15 @@
     <ClInclude Include="Resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CDIB.H">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="s141506L01_ext.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="s141506L01_Mfc.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="swLab19f.cpp">
@@ -57,6 +66,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MsgView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CDIB.CPP">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="s141506L01_App.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -11,6 +11,10 @@
 #include "swLab19fDoc.h"
 #include "swLab19fView.h"
 
+//page35에서 추가
+#include "s141506L01_Mfc.h"
+#include "s141506L01_ext.h" 
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif

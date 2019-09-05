@@ -193,7 +193,7 @@
     <ClInclude Include="CDIB.H" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="s141506L01.h" />
+    <ClInclude Include="s141506L01_Mfc.h" />
     <ClInclude Include="s141506L01_ext.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="swLab19f.h" />
