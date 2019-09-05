@@ -44,7 +44,7 @@ CMainFrame::CMainFrame() noexcept
 CMainFrame::~CMainFrame()
 {
 }
-
+//page36 각 클래스별 instance얻기 : 클래스 밖에서 현재 활성화된 instance를 얻어온다.
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
@@ -56,7 +56,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // 만들지 못했습니다.
 	}
 	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
-
+	g_pMainF = this;
 	return 0;
 }
 /*MFC 분할창 관련 코드*/

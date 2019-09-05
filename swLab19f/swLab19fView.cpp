@@ -42,11 +42,12 @@ CswLab19fView::~CswLab19fView()
 {
 }
 
+//page36:각 클래스별 instance얻기
 BOOL CswLab19fView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: CREATESTRUCT cs를 수정하여 여기에서
 	//  Window 클래스 또는 스타일을 수정합니다.
-
+	g_pView = this;
 	return CView::PreCreateWindow(cs);
 }
 
