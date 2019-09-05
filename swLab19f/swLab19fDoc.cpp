@@ -22,6 +22,7 @@
 IMPLEMENT_DYNCREATE(CswLab19fDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CswLab19fDoc, CDocument)
+	ON_COMMAND(ID_FOPEN01, &CswLab19fDoc::On_FOpen01)
 END_MESSAGE_MAP()
 
 
@@ -135,3 +136,9 @@ void CswLab19fDoc::Dump(CDumpContext& dc) const
 
 
 // CswLab19fDoc 명령
+
+
+void CswLab19fDoc::On_FOpen01()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
