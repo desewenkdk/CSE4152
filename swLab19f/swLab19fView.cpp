@@ -53,7 +53,7 @@ BOOL CswLab19fView::PreCreateWindow(CREATESTRUCT& cs)
 
 // CswLab19fView 그리기
 
-void CswLab19fView::OnDraw(CDC* /*pDC*/)
+void CswLab19fView::OnDraw(CDC* pDC)
 {
 	CswLab19fDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
@@ -61,6 +61,12 @@ void CswLab19fView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
+	if (SWL01_inst.readImageF1 == true) {
+		SWL01_inst.drawImage(pDC, 20, 20, 1);
+	}
+	if (SWL01_inst.readImageF2 == true) {
+		SWL01_inst.drawImage(pDC, 20, 20, 2);
+	}
 }
 
 

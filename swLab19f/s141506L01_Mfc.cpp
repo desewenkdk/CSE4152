@@ -17,10 +17,10 @@ void SWL01::readImage(CString pathName, int which) {
 	LPCTSTR str = pathName;// CString과 유사한 class
 	
 	// 아래 모두 포인터로 한 이유는 두 이미지를 읽어야 해서
-	CDib  *pDibF;// DIB class
-	LONG  *width, *height;
-	int   *depth;
-	LPBITMAPINFO *bmInfoHd;// DIB infoHeader
+	CDib  *pDibF = nullptr;// DIB class
+	LONG  *width = nullptr, *height = nullptr;
+	int   *depth = nullptr;
+	LPBITMAPINFO *bmInfoHd = nullptr;// DIB infoHeader
 
 	/////////////*pointer setting하는 부/분.*///////////////
 	if (which == 1) {
