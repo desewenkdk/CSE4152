@@ -6,6 +6,7 @@
 using namespace std;
 using namespace cv;
 
+string type2str(int type);
 class SWL01 {
 protected:
 	// DIB data(image1) (read from a .bmp file)

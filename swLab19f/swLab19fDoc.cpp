@@ -160,7 +160,7 @@ void CswLab19fDoc::On_FOpen1()
 	}
 }
 
-
+//이미지배치, 이미지허용여부는 이미 .Mfc.cpp에서 구현됨
 void CswLab19fDoc::On_FOpen2()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
@@ -170,6 +170,6 @@ void CswLab19fDoc::On_FOpen2()
 로 및 파일 이름을 pathName에 저장한다.*/
 	if (IDOK == dlgfile.DoModal()) {
 		CString pathName = dlgfile.GetPathName();
-		SWL01_inst.readImage(pathName, 2);//SWL01 클 래 스 의 인 스 턴 스 로s074419L01_Mfc.cpp에 광역 변수로 선언할 것
+		SWL01_inst.readImage(pathName, 2);//2번째 이미지이므로, 이미지번호는2
 	}
 }
