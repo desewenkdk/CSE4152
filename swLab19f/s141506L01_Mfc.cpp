@@ -76,12 +76,28 @@ void SWL01::readImage(CString pathName, int which) {
 }
 
 /*이미지 그리는 함수:OnDraw에서 호출*/
+//page59가 되어서야 이미지처리부 제작.(which==3)
 void SWL01::drawImage(CDC *pDC, int dcLTx, int dcLTy, int which) {
 	if (which == 1) {
 		m_dibFile1.Draw(pDC, CPoint(dcLTx, dcLTy), CSize(m_width1, m_height1));
 	}
 	else if (which == 2) {
 		m_dibFile2.Draw(pDC, CPoint(dcLTx + 20 + m_width1, dcLTy), CSize(m_width2, m_height2));
+	}
+	else if (which == 3) {
+		/*이미지 처리 결과 출력에는, Microsoft가 제공하는 DIB 출력 함수인
+		StretchDIBits( )을 사용하는데, 이 함수는 bitmap header 구조
+		인 LPBITMAPINFO를 요구한다.*/
+		StretchDIBits(pDC->GetSafeHdc(),		// dc handle
+			dcLTx + 20 + m_width1, dcLTy,		// 화면의 좌상귀 좌표
+			m_MatR.cols, m_MatR.rows,	// 화면의 폭과 높이
+			0, 0,						// Mat 배열의 좌상귀
+			m_MatR.cols, m_MatR.rows,	// Mat 배열의 폭과 높이
+			m_MatR.data,				// image data to display
+			mg_lpBMIHR,			// BITMAPINFO 시작 주소 
+			DIB_RGB_COLORS,		// RGB 또는 색상 테이블 인덱스
+			SRCCOPY				// 래스터 연산 방법
+		);
 	}
 }
 
@@ -209,4 +225,46 @@ string type2str(int type) {
 	r += (chans + '0');
 
 	return r;
+}
+/*Draw( )에서는 Microsoft가 제공하는 DIB 출력 함수인
+StretchDIBits( )을 사용하는데, 이 함수는 bitmap header 구조
+인 LPBITMAPINFO를 요구한다.*/
+/*LPBITMAPINFO 는 BITMAPINFOHEADER 구 조 체 와
+optional pallet(RGBQUAD)으로 구성되어 있다.*/
+
+//LPBITMAPINFO구조를 만드는 함수
+void SWL01::Create_bmiInfoHeader(cv::Mat *image) {
+	// https://luckygg.tistory.com/117
+
+	/////////////BITMAPINFOHEADER구조생성
+	int bpp = image->channels() * 8;
+	int w = image->cols, h = image->rows;
+
+	memset(mg_lpBMIHR, 0, sizeof(BITMAPINFO));
+	mg_lpBMIHR->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	mg_lpBMIHR->bmiHeader.biPlanes = 1;
+	mg_lpBMIHR->bmiHeader.biBitCount = bpp;
+	mg_lpBMIHR->bmiHeader.biCompression = BI_RGB;
+	mg_lpBMIHR->bmiHeader.biWidth = w;
+	mg_lpBMIHR->bmiHeader.biHeight = -h;//거꾸로 h값을 출력(CDib타입과 구조상의 차이)
+	mg_lpBMIHR->bmiHeader.biSizeImage = w * h * 1;
+
+
+	//////////////Pallet(RGBQUAD)구조생성
+	switch (bpp) {
+	case 8://그레이스케일
+		for (int i = 0; i < 256; i++) {
+			mg_lpBMIHR->bmiColors[i].rgbBlue = (BYTE)i;
+			mg_lpBMIHR->bmiColors[i].rgbGreen = (BYTE)i;
+			mg_lpBMIHR->bmiColors[i].rgbRed = (BYTE)i;
+			mg_lpBMIHR->bmiColors[i].rgbReserved = 0;
+		}
+		break;
+	case 32:
+	case 24://rgb필터
+		((DWORD*)mg_lpBMIHR->bmiColors)[0] = 0x00FF0000; /* red mask  */
+		((DWORD*)mg_lpBMIHR->bmiColors)[1] = 0x0000FF00; /* green mask */
+		((DWORD*)mg_lpBMIHR->bmiColors)[2] = 0x000000FF; /* blue mask  */
+		break;
+	}
 }

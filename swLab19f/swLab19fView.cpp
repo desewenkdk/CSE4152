@@ -52,7 +52,8 @@ BOOL CswLab19fView::PreCreateWindow(CREATESTRUCT& cs)
 }
 
 // CswLab19fView 그리기
-
+//LPBITMAPINFO구조 만들고, which==3일때, processedF=true인경우만 이미지 2 대신처리 결과인 m_MatR을 출력하도록 한다.
+//따라서, 이미지 2는 이미 읽었더라도 processedF가 false일 때만 출력한다.->분기문 추가.
 void CswLab19fView::OnDraw(CDC* pDC)
 {
 	CswLab19fDoc* pDoc = GetDocument();
@@ -64,8 +65,11 @@ void CswLab19fView::OnDraw(CDC* pDC)
 	if (SWL01_inst.readImageF1 == true) {
 		SWL01_inst.drawImage(pDC, 20, 20, 1);
 	}
-	if (SWL01_inst.readImageF2 == true) {
+	if (SWL01_inst.readImageF2 == true && SWL01_inst.processedF == false) {
 		SWL01_inst.drawImage(pDC, 20, 20, 2);
+	}
+	if (SWL01_inst.processedF == true) {
+		SWL01_inst.drawImage(pDC, 20, 20, 3);
 	}
 }
 

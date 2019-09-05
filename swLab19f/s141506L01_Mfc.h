@@ -9,7 +9,11 @@ using namespace cv;
 string type2str(int type);
 
 class SWL01 {
+private:
+	BYTE tmp[sizeof(BITMAPINFO) +  255*sizeof(RGBQUAD)];//인포헤더저장영역
 protected:
+	LPBITMAPINFO mg_lpBMIHR = (LPBITMAPINFO)&tmp;//tmp가 위의 저 인포헤더. 저장은 byte타입, 꺼내쓸땐, lp형태로.
+
 	// DIB data(image1) (read from a .bmp file)
 	CDib m_dibFile1;
 	LONG m_width1, m_height1; // height and width
@@ -52,4 +56,6 @@ public:
 
 	void DIBtoMat(int which);//CDib 를 Mat 으로 변환.
 
+	//LPBITMAPINFO구조를 만드는 함수, infoheader저장할 장소는  private에할당.
+	void Create_bmiInfoHeader(cv::Mat *image);
 };
