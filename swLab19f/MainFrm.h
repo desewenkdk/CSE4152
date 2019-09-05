@@ -38,8 +38,12 @@ protected:  // 컨트롤 모음이 포함된 멤버입니다.
 // 생성된 메시지 맵 함수
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	//추가된 함수
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	DECLARE_MESSAGE_MAP()
-
+//p14
+protected:
+	bool m_bSplitter = false;
 };
 
 

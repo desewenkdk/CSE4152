@@ -22,6 +22,8 @@
 IMPLEMENT_DYNCREATE(CswLab19fView, CView)
 
 BEGIN_MESSAGE_MAP(CswLab19fView, CView)
+	//15p/창크기변화시 나오는 메시지
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 // CswLab19fView 생성/소멸

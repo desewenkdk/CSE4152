@@ -53,6 +53,12 @@
     <ClCompile Include="swLab19fView.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="s141506L01_Mfc.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MsgView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="swLab19f.rc">
