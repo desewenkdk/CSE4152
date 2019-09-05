@@ -30,7 +30,8 @@
 IMPLEMENT_DYNCREATE(CswLab19fDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CswLab19fDoc, CDocument)
-	ON_COMMAND(ID_FOPEN01, &CswLab19fDoc::On_FOpen01)
+	ON_COMMAND(ID_FOPEN01, &CswLab19fDoc::On_FOpen1)
+	ON_COMMAND(ID_FOPEN02, &CswLab19fDoc::On_FOpen2)
 END_MESSAGE_MAP()
 
 
@@ -146,7 +147,7 @@ void CswLab19fDoc::Dump(CDumpContext& dc) const
 // CswLab19fDoc 명령
 
 
-void CswLab19fDoc::On_FOpen01()
+void CswLab19fDoc::On_FOpen1()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	CFileDialog dlgfile(TRUE);
@@ -156,5 +157,19 @@ void CswLab19fDoc::On_FOpen01()
 	if (IDOK == dlgfile.DoModal()) {
 		CString pathName = dlgfile.GetPathName();
 		SWL01_inst.readImage(pathName, 1);//SWL01 클 래 스 의 인 스 턴 스 로s074419L01_Mfc.cpp에 광역 변수로 선언할 것
+	}
+}
+
+
+void CswLab19fDoc::On_FOpen2()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	CFileDialog dlgfile(TRUE);
+	// show file open dialog
+	/*이 코드는 파일 선택창을 통하여 파일을 선택하고 이의 경
+로 및 파일 이름을 pathName에 저장한다.*/
+	if (IDOK == dlgfile.DoModal()) {
+		CString pathName = dlgfile.GetPathName();
+		SWL01_inst.readImage(pathName, 2);//SWL01 클 래 스 의 인 스 턴 스 로s074419L01_Mfc.cpp에 광역 변수로 선언할 것
 	}
 }

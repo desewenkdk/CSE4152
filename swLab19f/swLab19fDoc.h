@@ -46,5 +46,6 @@ protected:
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
 public:
-	afx_msg void On_FOpen01();
+	afx_msg void On_FOpen1();
+	afx_msg void On_FOpen2();
 };
