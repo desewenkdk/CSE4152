@@ -32,6 +32,8 @@ IMPLEMENT_DYNCREATE(CswLab19fDoc, CDocument)
 BEGIN_MESSAGE_MAP(CswLab19fDoc, CDocument)
 	ON_COMMAND(ID_FOPEN01, &CswLab19fDoc::On_FOpen1)
 	ON_COMMAND(ID_FOPEN02, &CswLab19fDoc::On_FOpen2)
+	ON_COMMAND(ID_PopUpIM01, &CswLab19fDoc::OnPopUpIM01)
+	ON_COMMAND(ID_PopUpIM02, &CswLab19fDoc::OnPopUpIM02)
 END_MESSAGE_MAP()
 
 
@@ -172,4 +174,26 @@ void CswLab19fDoc::On_FOpen2()
 		CString pathName = dlgfile.GetPathName();
 		SWL01_inst.readImage(pathName, 2);//2번째 이미지이므로, 이미지번호는2
 	}
+}
+
+
+void CswLab19fDoc::OnPopUpIM01()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	/*이미 입력 이미지에 대한 Mat 자료를 구성하였기에 이벤트
+	처리기에서는 readImageF1이 true일 때 drawMatPopUp(1)만
+	호출하면 된다.*/
+	if (SWL01_inst.readImageF1 == true)
+		SWL01_inst.drawMatPopUp(1);
+}
+
+
+void CswLab19fDoc::OnPopUpIM02()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	/*이미 입력 이미지에 대한 Mat 자료를 구성하였기에 이벤트
+	처리기에서는 readImageF2가 true일 때 drawMatPopUp(2)만
+	호출하면 된다.*/
+	if (SWL01_inst.readImageF2 == true)
+		SWL01_inst.drawMatPopUp(2);
 }
