@@ -19,14 +19,15 @@ class CswLab19fApp : public CWinApp
 public:
 	CswLab19fApp() noexcept;
 
-
 // 재정의입니다.
 public:
 	virtual BOOL InitInstance();
+	
 
 // 구현입니다.
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
+	afx_msg void OnDarkenImage();
 };
 
 extern CswLab19fApp theApp;

@@ -58,4 +58,7 @@ public:
 
 	//LPBITMAPINFO구조를 만드는 함수, infoheader저장할 장소는  private에할당.
 	void Create_bmiInfoHeader(cv::Mat *image);
+
+	//Image Darken function
+	void DarkenGrayscaleImage(void);
 };
