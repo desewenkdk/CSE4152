@@ -68,6 +68,9 @@ public:
 	//24bit color to grayscale
 	void Color24toGrayscale(void);
 
+	//16bit color to grayscale
+	void Color16toGrayscale(void);
+
 	//이미지 프로세싱 결과 생긴 이미지를 저장하는 코드
 	void saveImage(CString pathName);
 };

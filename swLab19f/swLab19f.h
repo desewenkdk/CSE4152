@@ -30,6 +30,7 @@ public:
 	afx_msg void OnDarkenImage();
 	afx_msg void OnBrightenImage();
 	afx_msg void On24ColorToGray();
+	afx_msg void On16ColToGray();
 };
 
 extern CswLab19fApp theApp;

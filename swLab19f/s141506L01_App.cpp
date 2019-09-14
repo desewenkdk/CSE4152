@@ -111,3 +111,52 @@ void SWL01::Color24toGrayscale(void) {
 	g_pView->Invalidate(); // OnDraw를 호출한다
 }
 
+void SWL01::Color16toGrayscale() {
+	Mat * pMat = nullptr; // m_Mat을 처리할 포인터 -> 필요한가?
+
+	//1번 이미지 - 처리할 이미지가 열렸는지 우선 확인
+	if (readImageF1 == false) {
+		AfxMessageBox(L"Read image1 first!", MB_OK, 0);
+		return;
+	}
+
+	//16bit color image인지 여부를 확인.
+	pMat = &m_Mat1;
+	string s1 = "16UC1";
+	if (type2str((*pMat).type()).compare(s1) != 0) {//compare는 같으면 0을 리턴하는 미친 함수
+		AfxMessageBox(L"Only 16bit color image can be processed!", MB_OK, 0);
+		return;
+	}
+
+	int h = (int)m_height1, w = (int)m_width1;
+	m_MatR = Mat(h, w, CV_8UC1);//변환 결과는 8비트 그레이스케일
+
+	//m_MatR = Mat(h, w, CV_16UC1);
+	for (int r = 0; r < h; r++) {
+		ushort *pixel1 = m_Mat1.ptr<ushort>(r);
+		for (int c = 0; c < w; c++) {
+			//ushort pixel = m_Mat1.at<ushort>(r, c);
+			
+			//pixel <<= 1;
+			ushort red = pixel1[c];// = pixel & 0 111110000000000;
+			ushort green = pixel1[c];// = pixel & 0 000001111100000;
+			ushort blue = pixel1[c];// = pixel & 0 000000000011111;
+			
+
+			red >>= 10; green >>= 5; //blue >>= 0;
+			red = red & 31; green = green & 31; blue = blue & 31;//right shift하면서 남아있는 부호비트들 날리는 작업 + 필요한 5bit만 남기기.
+			
+			uchar result = (uchar)(red * 0.299 + green * 0.587 + blue * 0.114);
+
+			result *= 8;//scale up
+
+			//GRAY = 0.299R + 0.587G + 0.114B
+			m_MatR.at<uchar>(r, c) = result;
+			//m_MatR.at<ushort>(r, c) = (*pMat).at<ushort>(r, c);
+		}
+	}
+
+	Create_bmiInfoHeader(&m_MatR); // 인포헤더를 갱신
+	processedF = true; // 처리 완료를 flag을 통하여 알린다
+	g_pView->Invalidate(); // OnDraw를 호출한다
+}
