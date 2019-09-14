@@ -76,3 +76,38 @@ void SWL01::BrightenGrayscaleImage(void) {
 	g_pView->Invalidate(); // OnDraw를 호출한다
 
 }
+
+void SWL01::Color24toGrayscale(void) {
+	Mat * pMat = nullptr; // m_Mat을 처리할 포인터 -> 필요한가?
+
+	//1번 이미지 - 처리할 이미지가 열렸는지 우선 확인
+	if (readImageF1 == false) {
+		AfxMessageBox(L"Read image1 first!", MB_OK, 0);
+		return;
+	}
+
+	//24bit color image인지 여부를 확인.
+	pMat = &m_Mat1;
+	string s1 = "8UC3";
+	if (type2str((*pMat).type()).compare(s1) != 0) {//compare는 같으면 0을 리턴하는 미친 함수
+		AfxMessageBox(L"Only 24bit color image can be processed!", MB_OK, 0);
+		return;
+	}
+
+	//
+	int h = (int)m_height1, w = (int)m_width1;
+	m_MatR = Mat(h, w, CV_8UC1);//변환 결과는 8비트 그레이스케일
+	
+	for (int r = 0; r < h; r++) {
+		uchar *pMatRow = m_Mat1.ptr<uchar>(r);
+		for (int c = 0; c < w; c++) {
+			//GRAY = 0.299R + 0.587G + 0.114B
+			m_MatR.at<uchar>(r, c) = pMatRow[3 * c] * 0.299 + pMatRow[3 * c + 1] * 0.587 + pMatRow[3 * c + 2] * 0.114;
+		}
+	}
+
+	Create_bmiInfoHeader(&m_MatR); // 인포헤더를 갱신
+	processedF = true; // 처리 완료를 flag을 통하여 알린다
+	g_pView->Invalidate(); // OnDraw를 호출한다
+}
+

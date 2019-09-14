@@ -29,6 +29,7 @@ public:
 	DECLARE_MESSAGE_MAP()
 	afx_msg void OnDarkenImage();
 	afx_msg void OnBrightenImage();
+	afx_msg void On24ColorToGray();
 };
 
 extern CswLab19fApp theApp;

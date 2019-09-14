@@ -29,6 +29,7 @@ BEGIN_MESSAGE_MAP(CswLab19fApp, CWinApp)
 	ON_COMMAND(ID_FILE_OPEN, &CWinApp::OnFileOpen)
 	ON_COMMAND(ID_DarkenImg, &CswLab19fApp::OnDarkenImage)
 	ON_COMMAND(ID_BrightenImg, &CswLab19fApp::OnBrightenImage)
+	ON_COMMAND(ID_24ColToGray, &CswLab19fApp::On24ColorToGray)
 END_MESSAGE_MAP()
 
 
@@ -180,4 +181,11 @@ void CswLab19fApp::OnBrightenImage()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	SWL01_inst.BrightenGrayscaleImage();
+}
+
+
+void CswLab19fApp::On24ColorToGray()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	SWL01_inst.Color24toGrayscale();
 }
