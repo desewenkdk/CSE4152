@@ -268,3 +268,18 @@ void SWL01::Create_bmiInfoHeader(cv::Mat *image) {
 		break;
 	}
 }
+
+void SWL01::saveImage(CString pathName) {
+	// save the processed image to a specific file
+	// possible extension: .bmp, ,jpg, etc. For more see
+	// https://docs.opencv.org/3.4.7/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56
+	string str = CT2CA(pathName);     // convert CString to string
+	const char *cstr = str.c_str();
+
+	bool result = imwrite(cstr, m_MatR);//저장할 때, 확장자 이름까지 수동으로 입력해주어야 함.
+	if (!result) {
+		AfxMessageBox(L"ERROR: Cannot Save The Image", MB_OK, 0);
+	}
+	g_pView->Invalidate(TRUE);
+	return;
+}

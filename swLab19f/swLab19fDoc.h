@@ -50,4 +50,5 @@ public:
 	afx_msg void On_FOpen2();
 	afx_msg void OnPopUpIM01();
 	afx_msg void OnPopUpIM02();
+	afx_msg void OnSaveImage();
 };

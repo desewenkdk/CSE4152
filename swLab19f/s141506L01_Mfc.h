@@ -31,7 +31,7 @@ protected:
 	Mat m_Mat2; //image2에 해당하는 Mat객체
 
 	// Resulting Mat after processing something
-	Mat     m_MatR;		
+	Mat     m_MatR;		//선언만 하고 할당은 ,.App에서
 
 public:
 	bool readImageF1;	// set true after reading an image1
@@ -61,4 +61,7 @@ public:
 
 	//Image Darken function
 	void DarkenGrayscaleImage(void);
+
+	//이미지 프로세싱 결과 생긴 이미지를 저장하는 코드
+	void saveImage(CString pathName);
 };
