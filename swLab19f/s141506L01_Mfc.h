@@ -61,7 +61,9 @@ public:
 
 	//Image Darken function
 	void DarkenGrayscaleImage(void);
-
+	
+	//Image Brighten function
+	void BrightenGrayscaleImage(void);
 	//이미지 프로세싱 결과 생긴 이미지를 저장하는 코드
 	void saveImage(CString pathName);
 };

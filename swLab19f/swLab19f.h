@@ -28,6 +28,7 @@ public:
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
 	afx_msg void OnDarkenImage();
+	afx_msg void OnBrightenImage();
 };
 
 extern CswLab19fApp theApp;
