@@ -133,17 +133,17 @@ void SWL01::Color16toGrayscale() {
 
 	//m_MatR = Mat(h, w, CV_16UC1);
 	for (int r = 0; r < h; r++) {
-		ushort *pixel1 = m_Mat1.ptr<ushort>(r);
+		unsigned short *pixel1 = (*pMat).ptr<unsigned short>(r);
 		for (int c = 0; c < w; c++) {
 			//ushort pixel = m_Mat1.at<ushort>(r, c);
 			
 			//pixel <<= 1;
-			ushort red = pixel1[c];// = pixel & 0 111110000000000;
-			ushort green = pixel1[c];// = pixel & 0 000001111100000;
-			ushort blue = pixel1[c];// = pixel & 0 000000000011111;
+			unsigned short red = pixel1[c];// = pixel & 0 111110000000000;
+			unsigned short green = pixel1[c];// = pixel & 0 000001111100000;
+			unsigned short blue = pixel1[c];// = pixel & 0 000000000011111;
 			
 
-			red >>= 10; green >>= 5; //blue >>= 0;
+			red >> 10; green >>= 5; //blue >>= 0;
 			red = red & 31; green = green & 31; blue = blue & 31;//right shift하면서 남아있는 부호비트들 날리는 작업 + 필요한 5bit만 남기기.
 			
 			uchar result = (uchar)(red * 0.299 + green * 0.587 + blue * 0.114);

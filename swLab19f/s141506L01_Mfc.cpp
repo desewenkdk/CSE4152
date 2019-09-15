@@ -170,9 +170,11 @@ void SWL01::DIBtoMat(int which) {
 	//***아래에 실제 이미지를 복사하는 빈 부분을 짥게 작성하자:실습자료 중 Mat으로 복사하는 부분.***
 	//***   8,16,24 모든 이미지를 볼 수 있어야 한다:포인터연산을 사용한다.                ***
 	
+	/*
 	for (int p = 0; p < h * w * (*pMat).channels(); p++) {
 		*pMatData++ = *pDibData++;
-	}
+	}*/
+
 	/*위 코드를 풀면 다음과 같다.
 	for (int r = 0; r < h; r++)
 		for (int c = 0; c < w; c++) {
@@ -182,6 +184,21 @@ void SWL01::DIBtoMat(int which) {
 	}
 	*/
 	//***
+	int channel;
+	switch (depth) {
+	case 8:
+		channel = 1; break;
+	case 16:
+		channel = 2; break;
+	default:
+		channel = 3;
+	}
+
+	for(int r = 0; r < h; r++)
+		for (int c = 0; c < w; c++) {
+			for (int k = 0; k < channel; k++)
+				pMatData[r*w*channel + c * channel + k] = *pDibData++;
+		}
 	flip((*pMat), (*pMat), 0);	// upside down
 }
 
