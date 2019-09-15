@@ -35,6 +35,7 @@ BEGIN_MESSAGE_MAP(CswLab19fDoc, CDocument)
 	ON_COMMAND(ID_PopUpIM01, &CswLab19fDoc::OnPopUpIM01)
 	ON_COMMAND(ID_PopUpIM02, &CswLab19fDoc::OnPopUpIM02)
 	ON_COMMAND(ID_SAVE_IMG, &CswLab19fDoc::OnSaveImage)
+	ON_COMMAND(ID_PopUpIMR, &CswLab19fDoc::OnPopUpIMR)
 END_MESSAGE_MAP()
 
 
@@ -199,6 +200,12 @@ void CswLab19fDoc::OnPopUpIM02()
 		SWL01_inst.drawMatPopUp(2);
 }
 
+void CswLab19fDoc::OnPopUpIMR()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	if (SWL01_inst.processedF == true)
+		SWL01_inst.drawMatPopUp(3);
+}
 
 void CswLab19fDoc::OnSaveImage()
 {
@@ -215,3 +222,6 @@ void CswLab19fDoc::OnSaveImage()
 		return;
 	}
 }
+
+
+
